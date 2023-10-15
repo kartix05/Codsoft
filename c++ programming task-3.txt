@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+int main() {
+    int numStudents;
+
+    std::cout << "Enter the number of students: ";
+    std::cin >> numStudents;
+
+    std::vector<std::string> studentNames;
+    std::vector<double> studentGrades;
+
+    for (int i = 0; i < numStudents; i++) {
+        std::string name;
+        double grade;
+
+        std::cout << "Enter the name of student " << (i + 1) << ": ";
+        std::cin.ignore(); // Clear newline character from the previous input
+        std::getline(std::cin, name);
+
+        std::cout << "Enter the grade of " << name << ": ";
+        std::cin >> grade;
+
+        studentNames.push_back(name);
+        studentGrades.push_back(grade);
+    }
+
+    double sum = 0.0;
+    double average = 0.0;
+
+    if (numStudents > 0) {
+        for (double grade : studentGrades) {
+            sum += grade;
+        }
+        average = sum / numStudents;
+    }
+
+    double highestGrade = *std::max_element(studentGrades.begin(), studentGrades.end());
+    double lowestGrade = *std::min_element(studentGrades.begin(), studentGrades.end());
+
+    std::cout << "Average Grade: " << average << std::endl;
+    std::cout << "Highest Grade: " << highestGrade << std::endl;
+    std::cout << "Lowest Grade: " << lowestGrade << std::endl;
+
+    return 0;
+}
